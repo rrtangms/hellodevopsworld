@@ -3,12 +3,13 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello, World!</title>
+    <title>Hello, NDC Oslo!</title>
     <base href="~/" />
     <link href="site.css" rel="stylesheet" />
 </head>
 <body>
-    <app>@(await Html.RenderComponentAsync<App>())</app>
+    <div class="satellite">
+        <app>@(await Html.RenderComponentAsync<App>())</app>
+    </div>
 </body>
 </html>
