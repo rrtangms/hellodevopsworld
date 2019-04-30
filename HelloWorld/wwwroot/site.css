@@ -1,0 +1,39 @@
+﻿html {
+    background: #e8ebee url('build.png') no-repeat right bottom;
+    background-size: 60%;
+    font-family: "Segoe UI";
+    height: 100%;
+}
+
+h1.greeting:before {
+    content: "";
+    background: url('microsoft.png') no-repeat 0 0;
+    background-size: 125px 27px;
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 125px;
+    height: 27px;
+    padding-bottom: 80px;
+}
+
+h1.greeting {
+    position: relative;
+    top: 50px;
+    left: 50px;
+    font-weight: 600;
+    font-size: 55pt;
+    line-height: 1.1em;
+    letter-spacing: -0.03em;
+}
+
+    h1.greeting.loading {
+        color: #bbbbbb;
+    }
+
+div.description {
+    position: relative;
+    top: 40px;
+    left: 50px;
+}

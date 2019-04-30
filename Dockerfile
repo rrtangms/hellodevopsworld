@@ -1,19 +1,18 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0.100-preview3 AS build
 WORKDIR /app
-EXPOSE 80
 
-FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /src
-COPY HelloWorld.csproj .
-COPY Program.cs .
-WORKDIR /src
+COPY *.sln .
+COPY HelloWorld/*.csproj ./HelloWorld/
 RUN dotnet restore
-RUN dotnet build -c Release -o /app --no-restore
 
-FROM build AS publish
-RUN dotnet publish -c Release -o /app
+COPY HelloWorld/. ./HelloWorld/
 
-FROM base AS final
+WORKDIR /app/HelloWorld
+RUN dotnet publish -c Release -o /app/out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0.0-preview3 AS runtime
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app/out .
+
 ENTRYPOINT ["dotnet", "HelloWorld.dll"]
+EXPOSE 80

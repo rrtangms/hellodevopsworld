@@ -1,0 +1,27 @@
+﻿@page "/"
+
+@using HelloWorld.Services
+@inject GreetingService greetingService
+
+@if (greeting == null)
+{
+    <h1 class="greeting loading">Loading...</h1>
+}
+else
+{
+    <h1 class="greeting">@greeting.Salutation, @greeting.Audience!</h1>
+
+    @if (greeting.Description != null)
+    {
+        <div class="description">@greeting.Description</div>
+    }
+}
+
+@functions {
+    Greeting greeting;
+
+    protected override void OnInit()
+    {
+        greeting = greetingService.GetGreeting();
+    }
+}
